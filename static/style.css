@@ -1,0 +1,169 @@
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+body{
+    background-color: #f2f2f3;
+    font-family: 'Universe LT Std', Arial, Helvetica, sans-serif;
+    color: #410080;
+}
+
+.table-container {
+    width: 50%;
+    margin: auto;
+    border-radius: 25%;
+}
+
+table {
+    color: #080026;
+}
+
+a {
+    color: #410080;
+}
+
+a:hover {
+    color: #080026;
+    text-decoration: underline;
+}
+  
+nav.navbar {
+    background-color: #410080;
+}
+
+.input-group {
+    padding-top: 2%;
+    width: 25%;
+    margin: auto;
+}
+
+.input-group-text{
+    display: inline-block;
+}
+
+span.input-group-text{
+    position: absolute;
+    width: 91%;
+    overflow: hidden;
+    text-align: left;
+}
+  
+
+.btn-group {
+    align-items: center;
+    text-align:center;
+}
+
+.btn:focus{
+    box-shadow: 0 0 0 0.2rem rgba(8, 41, 108, .25);
+}
+
+.custom-file-input:focus~.custom-file-label {
+    border-color: #410080;
+    box-shadow: 0 0 0 0.2rem rgba(8,41,108,.25);
+}
+
+.dropdown-menu.show {
+      margin-left: -1.75%;
+}
+  
+a.dropdown {
+    align-items: center;
+}
+  
+li {
+    text-align: center;
+}
+  
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+    margin: auto;
+}
+
+
+  
+  /* Provide sufficient contrast against white background */
+  
+.btn-primary {
+    color: #fff;
+    background-color: #410080;
+    border-color: #410080;
+    margin: auto;
+    margin-top: 8%;
+    display: flex;
+    justify-content: center;
+}
+  
+.btn-primary:hover {
+    background-color: #080026;
+    border-color: #080026;
+}
+  
+.btn-sm {
+    background-color: #fff;
+    border-color: #fff;
+    color: #080026;
+}
+  
+.btn-sm:hover {
+    background-color: #080026;
+    border-color: #080026;
+    color: #fff;
+}
+  
+  
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+    color: #fff;
+    background-color: #410080;
+    border-color: #410080;
+}
+  
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    font-size: 14px;
+}
+@media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+}
+  
+.border-top {
+    border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+    border-bottom: 1px solid #e5e5e5;
+}
+  
+.box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+  
+button.accept-policy {
+    font-size: 1rem;
+    line-height: inherit;
+}
+  
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+  
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+    background-color: #080026;
+    color: #fff;
+}
+  

@@ -1,0 +1,6 @@
+{% extends 'index.html' %}
+  {%if result != None%}
+    {% for table in tables %}
+      {{ table|safe }}
+    {% endfor %}
+  {% endif %}
