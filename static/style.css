@@ -6,6 +6,19 @@ body{
     color: #410080;
 }
 
+form {
+    width: 40%;
+    margin: auto;
+}
+
+.input-group {
+    width: 75%;
+}
+
+.custome-file-input {
+    width: 100%;
+}
+
 .table-container {
     width: 50%;
     margin: auto;
@@ -31,7 +44,6 @@ nav.navbar {
 
 .input-group {
     padding-top: 2%;
-    width: 25%;
     margin: auto;
 }
 
@@ -40,8 +52,8 @@ nav.navbar {
 }
 
 span.input-group-text{
+    width: 90.5%;
     position: absolute;
-    width: 91%;
     overflow: hidden;
     text-align: left;
 }

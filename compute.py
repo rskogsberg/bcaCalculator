@@ -12,7 +12,7 @@ class BcaCalculator:
         Initialize the class
         """
         self.filename = os.path.join('S:/Departments/Analytics/Chemical Analytics/Richard/tempUploadFolder', filename)
-        self.sampleResults = pd.DataFrame(columns=['Dilution 1 (g/L)','Dilution 2 (g/L)','Mean Concentration (g/L)','Standard Deviations (%)','Variance (CV) (%)'])
+        self.sampleResults = pd.DataFrame(columns=['Dilution 1 (g/L)','Dilution 1 OD (OD)','Dilution 2 (g/L)','Dilution 2 OD (OD)','Mean Concentration (g/L)','Standard Deviations (%)','Variance (CV) (%)'])
         self.standardResults = pd.DataFrame(columns=['Mean Concentrations (g/L)','Variance (CV) (%)'])
         self.initialStandardsDataframe = pd.read_csv(self.filename, sep='\t', skiprows=2, nrows=14)
         self.initialUnknownsDataframe = pd.read_csv(self.filename, sep='\t', skiprows=24, skipfooter=11)
@@ -30,6 +30,11 @@ class BcaCalculator:
         self.averageConcentrations_ = [round((self.adjConcValues[i]+self.adjConcValues[i+1])/2, 3) for i in range(len(self.adjustConcentrations())) if (i % 2) == 0]
         return self.averageConcentrations_
     
+    def opticalDispersity(self):
+        # average optical dispersity values
+        self.opticalDispersityAverages_ = [round(np.mean(self.initialUnknownsDataframe.loc[index:index+2, 'OD_Values']), 3) for index in range(0, len(self.initialUnknownsDataframe)-2) if index % 3 == 0]
+        return self.opticalDispersityAverages_
+
     def standardDeviations(self):
         #calculate standard deviations from sample values 
         self.standardDeviations_ = [round(np.std(self.adjConcValues[i:i+2]), 3) for i in range(len(self.adjustConcentrations())) if (i % 2) == 0]
@@ -56,6 +61,11 @@ class BcaCalculator:
                 self.sampleResults.loc[i,'Dilution 1 (g/L)'] = self.adjConcValues[i]
             else:
                 self.sampleResults.loc[i-1, 'Dilution 2 (g/L)'] = self.adjConcValues[i] 
+        for i in range(0, len(self.opticalDispersity())):
+            if i % 2 == 0:
+                self.sampleResults.loc[i,'Dilution 1 OD (OD)'] = self.opticalDispersityAverages_[i]
+            else:
+                self.sampleResults.loc[i-1,'Dilution 2 OD (OD)'] = self.opticalDispersityAverages_[i]
         self.sampleResults['Mean Concentration (g/L)'] = self.averageConcentrations()
         self.sampleResults['Standard Deviations (%)'] = self.standardDeviations()
         self.sampleResults['Variance (CV) (%)'] = self.coefficientsOfVariation()
@@ -68,3 +78,11 @@ class GoldenToad(BcaCalculator):
         # Used to adjust concentrations for golden toad, does nothing for non golden toad, but that is how it is labeled on the SoftMax template
         self.adjConcValues = [round(self.initialUnknownsDataframe.loc[index, 'AdjConc']+self.initialUnknownsDataframe.loc[index + (0.5*len(self.initialUnknownsDataframe)), 'AdjConc'],3) for index in range(0, len(self.initialUnknownsDataframe)) if index <= (0.5*len(self.initialUnknownsDataframe)-3) and index % 3 == 0]
         return self.adjConcValues
+
+    def opticalDispersity(self):
+        # average optical dispersity values
+        self.opticalDispersityAverages_ = [round(np.mean(self.initialUnknownsDataframe.loc[index:index+2, 'OD_Values']), 3) for index in range(0, len(self.initialUnknownsDataframe)-2) if index % 3 == 0]
+        self.opticalDispersityAdjusted_ = [self.opticalDispersityAverages_[i] + self.opticalDispersityAverages_[i + int(0.5 * len(self.opticalDispersityAverages_))] for i in range(int(0.5 * len(self.opticalDispersityAverages_)))]
+        self.opticalDispersityAverages_ = self.opticalDispersityAdjusted_
+        print(len(self.opticalDispersityAverages_))
+        return self.opticalDispersityAverages_

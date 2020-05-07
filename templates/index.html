@@ -20,34 +20,36 @@
       </button>
     </div>
   </nav>
-  <form method="POST" action="/" enctype="multipart/form-data">
-    <div class="input-group">
-      <div class="input-group-prepend">
-        <span class="input-group-text">Upload</span>
+  <div class="form-container">
+    <form method="POST" action="/" enctype="multipart/form-data">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text">Upload</span>
+        </div>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input" name="filename" id="inputGroupFile01">
+          <label class="custom-file-label" for="filename" id="fileText">Choose file</label>
+        </div>
       </div>
-      <div class="custom-file">
-        <input type="file" class="custom-file-input" name="filename" id="inputGroupFile01">
-        <label class="custom-file-label" for="filename" id="fileText">Choose file</label>
+      <div class="input-group">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for project selection" name="goldenToad">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text">Golden Toad</span>
+        </div>
       </div>
-    </div>
-    <div class="input-group">
-      <div class="input-group-text">
-        <input type="checkbox" aria-label="Checkbox for project selection" name="goldenToad">
-      </div>
-      <div class="input-group-append">
-        <span class="input-group-text">Golden Toad</span>
-      </div>
-    </div>
-    <div class="input-group">
-      <div class="input-group-text">
-        <input type="checkbox" aria-label="Checkbox for project selection" name="notGoldenToad">
-      </div>
-      <div class="input-group-append">
-        <span class="input-group-text">Not Golden Toad</span>
-      </div>
-    </div>       
-    <p><input class="btn btn-primary" type="submit" value="Submit">
-  </form></p>
+      <div class="input-group">
+        <div class="input-group-text">
+          <input type="checkbox" aria-label="Checkbox for project selection" name="notGoldenToad">
+        </div>
+        <div class="input-group-append">
+          <span class="input-group-text">Not Golden Toad</span>
+        </div>
+      </div>       
+      <p><input class="btn btn-primary" type="submit" value="Submit">
+    </form></p>
+  </div>
   <div class="table-container">
     {% if result != None %}
       {% for table in tables %}
